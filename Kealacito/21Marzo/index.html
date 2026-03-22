@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flores de Amor Animadas</title>
+<!-- Autoría y derechos -->
+<meta name="author" content="Zero">
+<meta name="copyright" content="Zero - Código libre no comercial">
+<meta name="description" content="Flores de Amor Animadas: una sorpresa interactiva y romántica para dedicar a tu pareja o ser querido. Código libre para uso personal, educativo o de inspiración.">
+<meta name="keywords" content="amor, sorpresa, romántica, dedicatoria, animación, flores, girasoles, pareja, aniversario, regalo digital">
+<meta name="robots" content="index, follow">
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(#fdf6e3, #f8e7c9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+.fondo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.girasol {
+    position: absolute;
+    animation: caer linear infinite;
+}
+@keyframes caer {
+    0% { transform: translateY(-100px) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+.container {
+    width: 500px;
+    height: 680px;
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+.decor-flor {
+    position: absolute;
+    width: 180px;
+    z-index: 5;
+    pointer-events: none;
+}
+.flor1 {
+    top: -60px;
+    left: -60px;
+}
+.flor2 {
+    bottom: -60px;
+    right: -60px;
+}
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+}
+.slide.active {
+    display: flex;
+}
+h1 {
+    color: #6b8e23;
+    font-size: 28px;
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-in;
+}
+p {
+    color: #5c7a2c;
+    font-size: 16px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in 0.5s both;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.slide img {
+    width: 460px;
+    max-width: 120%;
+    margin-top: 10px;
+}
+.botones {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.botones button {
+    background: #8fbf5a;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+.carta-slide {
+    justify-content: center;
+    align-items: center;
+}
+.hoja-carta {
+    width: 85%;
+    max-width: 380px;
+    height: 85%;
+    background: #fffef8;
+    padding: 30px 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #222;
+    text-align: justify;
+}
+.fecha {
+    text-align: right;
+    margin-bottom: 20px;
+}
+.destinatario {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.hoja-carta p {
+    margin-bottom: 16px;
+}
+.despedida {
+    margin-top: 20px;
+}
+.firma {
+    margin-top: 5px;
+}
+/* Password screen styles */
+.screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+.screen.active {
+    display: flex;
+}
+.password-screen {
+    background: linear-gradient(#fdf6e3, #f8e7c9);
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.password-content {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+}
+.password-screen::before {
+    content: '🌻';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    font-size: 3rem;
+    opacity: 0.3;
+    animation: float 3s ease-in-out infinite;
+}
+.password-screen::after {
+    content: '💛';
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    font-size: 3rem;
+    opacity: 0.3;
+    animation: float 3s ease-in-out infinite reverse;
+}
+.petalo {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.2;
+    animation: fall 5s linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+.key {
+    background-color: #f8bbd0;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.key:hover {
+    background-color: #f48fb1;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+.key.reset {
+    background-color: #ffcccb;
+}
+.key.reset:hover {
+    background-color: #ff9999;
+}
+.input-display {
+    font-size: 24px;
+    margin-top: 20px;
+    letter-spacing: 8px;
+    animation: blink 1s infinite;
+}
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.5; }
+}
+</style>
+</head>
+<body>
+<!-- Password Screen -->
+<div id="passwordScreen" class="screen password-screen active">
+  <div class="petalo" style="left: 20%; animation-delay: 0s;">🌸</div>
+  <div class="petalo" style="left: 50%; animation-delay: 1s;">💛</div>
+  <div class="petalo" style="left: 80%; animation-delay: 2s;">🌼</div>
+  <div class="password-content">
+    <h2>🔒 Ingresa la contraseña</h2>
+    <p>Algo bonito fue preparado para ti... 💛</p>
+    <div class="input-display" id="inputDisplay">••••</div>
+    <div class="keypad">
+      <button class="key" onclick="enterDigit('1')">1</button>
+      <button class="key" onclick="enterDigit('2')">2</button>
+      <button class="key" onclick="enterDigit('3')">3</button>
+      <button class="key" onclick="enterDigit('4')">4</button>
+      <button class="key" onclick="enterDigit('5')">5</button>
+      <button class="key" onclick="enterDigit('6')">6</button>
+      <button class="key" onclick="enterDigit('7')">7</button>
+      <button class="key" onclick="enterDigit('8')">8</button>
+      <button class="key" onclick="enterDigit('9')">9</button>
+      <button class="key reset" onclick="resetPassword()">↻</button>
+      <button class="key" onclick="enterDigit('0')">0</button>
+      <div></div>
+    </div>
+  </div>
+</div>
+<!-- Flower Slideshow -->
+<div id="flowerContainer" class="screen">
+<div class="fondo" id="fondo"></div>
+<audio id="bg-music" src="Music/music2.mp3" preload="auto" loop></audio>
+<div class="container">
+<img class="decor-flor flor1" src="https://png.pngtree.com/png-vector/20220728/ourmid/pngtree-yellow-flowers-bouquet-png-image_6065595.png">
+<img class="decor-flor flor2" src="https://png.pngtree.com/png-vector/20220728/ourmid/pngtree-yellow-flowers-bouquet-png-image_6065595.png">
+<!-- SLIDE 1 -->
+<div class="slide active">
+    <h1>Para Alguien Muy Especial 💛</h1>
+    <p>Un pequeño detalle para ti...</p>
+    <img src="https://i.pinimg.com/1200x/32/bd/d6/32bdd679205042ac5bda8558d42a8ab7.jpg">
+    <div class="botones">
+        <button onclick="nextSlide()">Siguiente ➜</button>
+    </div>
+</div>
+<div class="slide">
+    <p>Hoy solo espero que hayas tenido un bonito día🌼<br> Sin intención de incomodar, solo recordarte que mereces cosas lindas. 🌻</p>
+    <img src="https://i.pinimg.com/1200x/57/b9/ea/57b9eaef5b69f508fe37dc887a748bdc.jpg">
+    <div class="botones">
+        <button onclick="prevSlide()">←</button>
+        <button onclick="nextSlide()">→</button>
+    </div>
+</div>
+<div class="slide">
+    <p>Aunque las cosas cambiaron… <br>hay detalles que siguen siendo sinceros 🌻</p>
+    <img src="https://i.pinimg.com/736x/93/4c/80/934c8056482a3e9015efccb1d2ba178d.jpg">
+    <div class="botones">
+        <button onclick="prevSlide()">←</button>
+        <button onclick="nextSlide()">→</button>
+    </div>
+</div>
+<div class="slide">
+    <p>Tengo algo más que decirte ✨</p>
+    <img src="https://i.pinimg.com/564x/43/e7/98/43e798ebc28fa84a245c0997434303d0.jpg">
+    <div class="botones">
+        <button onclick="prevSlide()">←</button>
+        <button onclick="goTo(4)">Abrir carta 💌</button>
+    </div>
+</div>
+<div class="slide carta-slide">
+    <div class="hoja-carta">
+        <div class="fecha">21 de marzo 🌻</div>
+        <p class="destinatario"><strong>Querida Cachetitos,</strong></p>
+<p>
+    Esta vez me tocó a mí aprender estas cositas… al inicio fue complicado, pero al final resulto bien creo. Supongo 
+    que cuando algo importa, uno encuentra la forma.
+</p>
+<p>
+    Sé que te hice pasar momentos difíciles, y hoy puedo verlo con más claridad. Muchas 
+    veces elegí pensar solo en mí y no supe valorar lo que tenía a mi 
+    lado. No hay excusas para eso… y lo asumo.
+</p>
+<p>
+    Lo hago porque esta vez no quiero quedarme callado ni dejar que el orgullo hable por mí, 
+    como antes. También entiendo que el daño cansa, que llega un punto donde uno simplemente deja de intentar. Y si 
+    llegaste a ese punto, lo comprendo.
+</p>
+<p>
+    Aun así, no quería dejar pasar este día sin darte algo bonito, 
+    aunque sea pequeño. Porque, a pesar de todo, lo que vivimos fue real para mí. 
+    Te extraño… extraño tu forma de ser, cómo me hablabas, incluso esos pequeños detalles tuyos que se quedaron conmigo.
+</p>
+<p>
+    No escribo esto para que cambies lo que decidiste. Solo quería decirte lo que 
+    siento, sin orgullo esta vez. En estos días entendí muchas cosas… aunque haya sido tarde.
+<p>
+    Y antes de convertirme solo en un recuerdo más, quería decirte que, aunque sea tarde todavía 
+    creo que lo nuestro pudo haberse hecho bien.
+</p>
+        <p class="despedida">Con cariño,</p>
+        <p class="firma"><strong>Koalita 💛🐨</strong></p>
+    </div>
+    <div class="botones">
+        <button onclick="goTo(0)">🏠 Inicio</button>
+        <button onclick="prevSlide()">←</button>
+    </div>
+</div>
+</div>
+</div>
+<script>
+const correctPassword = '1025';
+let input = '';
+function enterDigit(digit) {
+    if (input.length < 4) {
+        input += digit;
+    }
+    const display = document.getElementById('inputDisplay');
+    display.textContent = input.padEnd(4, '•');
+    if (input.length === 4) {
+        if (input === correctPassword) {
+            document.getElementById('passwordScreen').classList.remove('active');
+            document.getElementById('flowerContainer').classList.add('active');
+            // Initialize falling flowers after password
+            const fondo = document.getElementById("fondo");
+            for (let i = 0; i < 25; i++) {
+                let flor = document.createElement("img");
+                flor.src = "https://www.pngmart.com/files/4/Sunflower-PNG-HD.png";
+                flor.className = "girasol";
+                flor.style.left = Math.random() * 100 + "vw";
+                flor.style.animationDuration = (5 + Math.random() * 5) + "s";
+                flor.style.width = (25 + Math.random() * 35) + "px";
+                fondo.appendChild(flor);
+            }
+            // Play background music
+            const audio = document.getElementById('bg-music');
+            audio.volume = 0.7;
+            audio.play().catch(() => {
+                // If autoplay fails, try again on user interaction
+            });
+        } else {
+            alert('Contraseña incorrecta, intenta de nuevo');
+            input = '';
+            display.textContent = '••••';
+        }
+    }
+}
+function resetPassword() {
+    input = '';
+    document.getElementById('inputDisplay').textContent = '••••';
+}
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+function showSlide(index) {
+    slides[current].classList.remove("active");
+    current = index;
+    slides[current].classList.add("active");
+}
+function nextSlide() {
+    let next = current + 1;
+    if (next >= slides.length) next = 0;
+    showSlide(next);
+}
+function prevSlide() {
+    let prev = current - 1;
+    if (prev < 0) prev = slides.length - 1;
+    showSlide(prev);
+}
+function goTo(index) {
+    showSlide(index);
+}
+</script>
+</body>
+</html>
